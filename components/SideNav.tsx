@@ -46,6 +46,42 @@ export default function SideNav() {
             Reporting
           </Link>
         </li>
+        <li className="tc-m hover-bg-blue pa3 pointer">
+          <i className="material-icons v-mid">visibility</i>
+          <Link className="link pa2 pointer white dn-m v-mid" href="#">
+            Reporting
+          </Link>
+        </li>
+        <li className="tc-m hover-bg-blue pa3 pointer">
+          <i className="material-icons v-mid">visibility</i>
+          <Link className="link pa2 pointer white dn-m v-mid" href="#">
+            Reporting
+          </Link>
+        </li>
+        <li className="tc-m hover-bg-blue pa3 pointer">
+          <i className="material-icons v-mid">visibility</i>
+          <Link className="link pa2 pointer white dn-m v-mid" href="#">
+            Reporting
+          </Link>
+        </li>
+        <li className="tc-m hover-bg-blue pa3 pointer">
+          <i className="material-icons v-mid">visibility</i>
+          <Link className="link pa2 pointer white dn-m v-mid" href="#">
+            Reporting
+          </Link>
+        </li>
+        <li className="tc-m hover-bg-blue pa3 pointer">
+          <i className="material-icons v-mid">visibility</i>
+          <Link className="link pa2 pointer white dn-m v-mid" href="#">
+            Reporting
+          </Link>
+        </li>
+        <li className="tc-m hover-bg-blue pa3 pointer">
+          <i className="material-icons v-mid">visibility</i>
+          <Link className="link pa2 pointer white dn-m v-mid" href="#">
+            Reporting
+          </Link>
+        </li>
       </ul>
     </section>
   );
