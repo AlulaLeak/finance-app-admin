@@ -1,4 +1,4 @@
-export default function AlbumsLayout({
+export default function ClientsLayout({
   children,
 }: {
   children: React.ReactNode;

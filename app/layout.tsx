@@ -1,4 +1,11 @@
 import "../node_modules/tachyons";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
 
 export default function RootLayout({
   children,
