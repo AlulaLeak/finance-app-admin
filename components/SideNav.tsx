@@ -1,21 +1,17 @@
 import Link from "next/link";
 
-interface barType {
+interface SideNavOptionsType {
   title: string;
-
   icon: string;
-
   link: string;
 }
 
-const foo: barType[] = [
+const sideNavArray: SideNavOptionsType[] = [
   { title: "Dashboard", icon: "home", link: "/dashboard" },
   { title: "Classes", icon: "class", link: "/dashboard" },
   { title: "Instructors", icon: "assignment_ind", link: "/dashboard" },
   { title: "Guests", icon: "person_outline", link: "/dashboard" },
   { title: "Locations", icon: "place", link: "/dashboard" },
-  { title: "Reporting", icon: "visibility", link: "/dashboard" },
-  { title: "Reporting", icon: "visibility", link: "/dashboard" },
   { title: "Reporting", icon: "visibility", link: "/dashboard" },
 ];
 
@@ -26,7 +22,7 @@ export default function SideNav() {
         <h3 className="f3 ma0 pa2 black">Brand</h3>
       </div>
       <ul className="list pa1 center">
-        {foo.map((val: barType, idx: number) => {
+        {sideNavArray.map((val: SideNavOptionsType, idx: number) => {
           return (
             <li key={idx} className="tc-m hover-bg-blue pa3 pointer">
               <i className="material-icons v-mid">{val.icon}</i>

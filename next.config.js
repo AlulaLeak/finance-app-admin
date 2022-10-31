@@ -4,6 +4,9 @@ const nextConfig = {
   swcMinify: true,
   experimental: { appDir: true },
   webpack: true,
+  images: {
+    domains: ["dummyjson.com"],
+  },
 };
 
 module.exports = nextConfig;
