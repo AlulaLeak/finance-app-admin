@@ -1,9 +1,7 @@
-// require("dotenv").config("../.env");
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore/lite";
 import { getStorage } from "firebase/storage";
 import { initializeApp } from "firebase/app";
-("use client");
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -14,7 +12,6 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-export const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
-export const auth = getAuth(app);
-export const storage = getStorage(app);
+export const firebaseApp = initializeApp(firebaseConfig);
+export const db = getFirestore(firebaseApp);
+export const storage = getStorage(firebaseApp);

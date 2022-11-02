@@ -1,11 +1,7 @@
+"use client";
 import "../tachyons.css";
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
+import PageContextProvider from "../provider/PageContextProvider";
+import { SessionProvider } from "next-auth/react";
 
 export default function RootLayout({
   children,
@@ -14,8 +10,11 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <head></head>
-      <body>{children}</body>
+      <body>
+        <SessionProvider>
+          <PageContextProvider>{children}</PageContextProvider>
+        </SessionProvider>
+      </body>
     </html>
   );
 }
