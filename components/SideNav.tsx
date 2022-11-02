@@ -25,7 +25,8 @@ export default function SideNav() {
         {sideNavArray.map((val: SideNavOptionsType, idx: number) => {
           return (
             <li key={idx} className="tc-m hover-bg-blue pa3 pointer">
-              <i className="material-icons v-mid">{val.icon}</i>
+              {/* <i className="material-icons v-mid">{val.icon}</i> */}
+              <>(Icon)</>
               <Link
                 className="link pa2 pointer black dn-m v-mid"
                 href={val.link}

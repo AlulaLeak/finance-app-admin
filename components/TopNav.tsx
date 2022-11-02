@@ -7,7 +7,7 @@ export default function TopNav() {
           className="br-100 dib mr2 v-mid"
           alt=""
         />
-        Calvin <i className="material-icons v-mid">keyboard_arrow_down</i>
+        Admin
       </h3>
     </div>
   );
