@@ -1,0 +1,32 @@
+[debug] [2022-10-31T22:48:40.597Z] ----------------------------------------------------------------------
+[debug] [2022-10-31T22:48:40.598Z] Command:       /usr/local/bin/firebase /home/alula/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase deploy
+[debug] [2022-10-31T22:48:40.599Z] CLI Version:   11.13.0
+[debug] [2022-10-31T22:48:40.599Z] Platform:      linux
+[debug] [2022-10-31T22:48:40.599Z] Node Version:  v16.16.0
+[debug] [2022-10-31T22:48:40.599Z] Time:          Mon Oct 31 2022 18:48:40 GMT-0400 (Eastern Daylight Time)
+[debug] [2022-10-31T22:48:40.599Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-10-31T22:48:40.652Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-10-31T22:48:40.652Z] > authorizing via signed-in user (koffeek.ambesa@gmail.com)
+[debug] [2022-10-31T22:48:40.652Z] [iam] checking project workingauth for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2022-10-31T22:48:40.654Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/workingauth:testIamPermissions [none]
+[debug] [2022-10-31T22:48:40.654Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/workingauth:testIamPermissions x-goog-quota-user=projects/workingauth
+[debug] [2022-10-31T22:48:40.654Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/workingauth:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-10-31T22:48:41.159Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/workingauth:testIamPermissions 200
+[debug] [2022-10-31T22:48:41.159Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/workingauth:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-10-31T22:48:41.162Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/workingauth [none]
+[debug] [2022-10-31T22:48:41.529Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/workingauth 200
+[debug] [2022-10-31T22:48:41.530Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/workingauth {"projectId":"workingauth","projectNumber":"508361698170","displayName":"workingauth","name":"projects/workingauth","resources":{"hostingSite":"workingauth","storageBucket":"workingauth.appspot.com","locationId":"us-east1"},"state":"ACTIVE","etag":"1_71893a10-e467-4d63-a7f4-7d37eab5a101"}
+[debug] [2022-10-31T22:48:44.863Z] Error: Next.js requires React 18.2.0 to be installed.
+    at Object.getBaseWebpackConfig [as default] (/home/alula/Documents/finance-app-admin/node_modules/next/dist/build/webpack-config.js:59:19)
+    at async Promise.all (index 0)
+    at async Span.traceAsyncFn (/home/alula/Documents/finance-app-admin/node_modules/next/dist/trace/trace.js:79:20)
+    at async /home/alula/Documents/finance-app-admin/node_modules/next/dist/build/index.js:449:33
+    at async /home/alula/Documents/finance-app-admin/node_modules/next/dist/build/index.js:433:13
+    at async Span.traceAsyncFn (/home/alula/Documents/finance-app-admin/node_modules/next/dist/trace/trace.js:79:20)
+    at async build (/home/alula/Documents/finance-app-admin/node_modules/next/dist/build/index.js:64:29)
+    at async build (/home/alula/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/frameworks/next/index.js:33:5)
+    at async prepareFrameworks (/home/alula/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/frameworks/index.js:217:93)
+    at async deploy (/home/alula/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/deploy/index.js:50:13)
+[error] 
+[error] Error: An unexpected error has occurred.

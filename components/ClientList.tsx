@@ -2,14 +2,7 @@
 import Image from "next/image";
 import { useEffect } from "react";
 import { useClientList } from "../hooks/useClientList";
-
-interface ListType {
-  id: number;
-  email: string;
-  first_name: string;
-  last_name: string;
-  avatar: string;
-}
+import "tachyons";
 
 export default function ClientList() {
   const { initializeClientList, sortList, list, noPersonsFound } =

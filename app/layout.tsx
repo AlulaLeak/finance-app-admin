@@ -1,4 +1,4 @@
-import "../node_modules/tachyons";
+import "../tachyons.css";
 import {
   useQuery,
   useMutation,
@@ -14,16 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"
-        />
-        <link
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet"
-        />
-      </head>
+      <head></head>
       <body>{children}</body>
     </html>
   );

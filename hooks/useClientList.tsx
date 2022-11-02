@@ -3,15 +3,21 @@ import axios from "axios";
 
 interface ListType {
   id: number;
-  email: string;
-  first_name: string;
-  last_name: string;
-  avatar: string;
+  title: string;
+  description: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: string[];
 }
 
 export function useClientList() {
-  const [ogList, setOGList] = useState([]);
-  const [list, setList] = useState([]);
+  const [ogList, setOGList] = useState<ListType[]>([]);
+  const [list, setList] = useState<ListType[]>([]);
   const [noPersonsFound, setNoPersonsFound] = useState(false);
 
   async function initializeClientList(): Promise<void> {
@@ -20,7 +26,7 @@ export function useClientList() {
     setOGList(data.data.products);
   }
 
-  function sortList(e) {
+  function sortList(e: React.ChangeEvent<HTMLInputElement>) {
     setNoPersonsFound(false);
     let newList = [];
     if (e.target.value === "") {
