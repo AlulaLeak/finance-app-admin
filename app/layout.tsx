@@ -1,7 +1,6 @@
 "use client";
 import "../tachyons.css";
 import PageContextProvider from "../provider/PageContextProvider";
-import { SessionProvider } from "next-auth/react";
 
 export default function RootLayout({
   children,
@@ -11,9 +10,7 @@ export default function RootLayout({
   return (
     <html>
       <body>
-        <SessionProvider>
-          <PageContextProvider>{children}</PageContextProvider>
-        </SessionProvider>
+        <PageContextProvider>{children}</PageContextProvider>
       </body>
     </html>
   );

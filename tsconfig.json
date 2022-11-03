@@ -21,6 +21,8 @@
     ]
   },
   "include": [
+    "next.config.mjs",
+    "pages/api/auth/[...nextauth].js",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
