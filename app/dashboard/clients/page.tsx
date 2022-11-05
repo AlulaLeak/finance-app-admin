@@ -6,6 +6,8 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import { getFirestore, collection } from "firebase/firestore";
 import { firebaseApp } from "../../../firebase/initfirebase";
 
+const sortBy: string[] = ["Name", "Email"];
+
 export default function ClientList() {
   const [value, loading, error] = useCollection(
     collection(getFirestore(firebaseApp), "users")
@@ -15,8 +17,8 @@ export default function ClientList() {
     useClientList();
 
   useEffect(() => {
-    value && initializeClientList(value);
-  }, [value]);
+    initializeClientList(value);
+  }, [value !== undefined]);
 
   function renderList() {
     if (list[0] === undefined) return <div>Loading...</div>;
@@ -51,28 +53,33 @@ export default function ClientList() {
   return (
     <article>
       <div className="flex">
-        <div className="w-50 pa3 mr2">
+        {/* <div className="w-50 pa3 mr2">
           <h2 className="f3 fw4 pa3 mv0">Clients</h2>
-        </div>
-        <div className="w-50 pa3 mr2">
-          <form className="pa4 black-80">
-            <div className="measure">
-              <label className="f6 b db mb2">
-                Name <span className="normal black-60">(optional)</span>
-              </label>
-              <input
-                onChange={(e) => sortList(e)}
-                name="name"
-                className="input-reset ba b--black-20 pa2 mb2 db w-100"
-                type="text"
-                aria-describedby="name-desc"
-              />
-              <small className="f6 black-60 db mb2">
-                Search for a specific person here.
-              </small>
+        </div> */}
+        {sortBy.map((optionToSortBy, idx) => {
+          return (
+            <div key={idx} className="w-50 pa3 mr2">
+              <form className="pa4 black-80">
+                <div className="measure">
+                  <label className="f6 b db mb2">
+                    {optionToSortBy}
+                    {/* <span className="normal black-60">(optional)</span> */}
+                  </label>
+                  <input
+                    onChange={(e) => sortList(e, optionToSortBy)}
+                    name="name"
+                    className="input-reset ba b--black-20 pa2 mb2 db w-100"
+                    type="text"
+                    aria-describedby="name-desc"
+                  />
+                  <small className="f6 black-60 db mb2">
+                    {`Search for a specific person by ${optionToSortBy.toLowerCase()}.`}
+                  </small>
+                </div>
+              </form>
             </div>
-          </form>
-        </div>
+          );
+        })}
       </div>
       <div className="cf pa2">{renderList()}</div>
     </article>

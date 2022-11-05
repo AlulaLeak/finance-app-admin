@@ -10,25 +10,30 @@ export function useClientList() {
   async function initializeClientList(
     value: QuerySnapshot<DocumentData> | undefined
   ): Promise<void> {
-    var returnArr: any[] = [];
+    let list: DocumentData[] = [];
     value?.docs.map((doc) => {
-      returnArr.push(doc.data());
+      list.push(doc.data());
     });
-    setList(returnArr);
-    setOGList(returnArr);
+    setList(list);
+    setOGList(list);
   }
 
-  function sortList(e: React.ChangeEvent<HTMLInputElement>) {
+  function sortList(e: React.ChangeEvent<HTMLInputElement>, sortyBy: string) {
     setNoPersonsFound(false);
     let newList: DocumentData[] = [];
     if (e.target.value === "") {
       setList(ogList);
       return;
-    } else
+    } else {
       ogList.map((val) => {
-        if (val.name.toLowerCase().includes(e.target.value.toLowerCase()))
+        if (
+          val[sortyBy.toLowerCase()]
+            .toLowerCase()
+            .includes(e.target.value.toLowerCase())
+        )
           newList.push(val);
       });
+    }
 
     if (newList[0] === undefined) {
       setNoPersonsFound(true);
