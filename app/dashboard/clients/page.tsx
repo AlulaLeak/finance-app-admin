@@ -2,21 +2,26 @@
 import Image from "next/image";
 import { useEffect } from "react";
 import { useClientList } from "../../../hooks/useClientList";
+import { useCollection } from "react-firebase-hooks/firestore";
+import { getFirestore, collection } from "firebase/firestore";
+import { firebaseApp } from "../../../firebase/initfirebase";
 
 export default function ClientList() {
+  const [value, loading, error] = useCollection(
+    collection(getFirestore(firebaseApp), "users")
+  );
+
   const { initializeClientList, sortList, list, noPersonsFound } =
     useClientList();
 
   useEffect(() => {
-    initializeClientList();
-  }, []);
-
-  useEffect(() => {}, [list]);
+    value && initializeClientList(value);
+  }, [value]);
 
   function renderList() {
     if (list[0] === undefined) return <div>Loading...</div>;
     if (noPersonsFound) return <div>No persons found</div>;
-    return list.map((val, idx) => {
+    return list?.map((val, idx) => {
       if (idx < 15)
         return (
           <div key={idx} className="fl w-50 w-25-m w-20-l pa2">
@@ -27,15 +32,15 @@ export default function ClientList() {
               <Image
                 width={1000}
                 height={200}
-                src={val.thumbnail}
+                src={val.photoUrl}
                 alt="Frank Ocean Blonde Album Cover"
                 className={`w-100 db outline black-100`}
               />
               <dl className="mt2 f6 lh-copy">
-                <dt className="clip">Title</dt>
-                <dd className="ml0 black truncate w-100">{val.title}</dd>
-                <dt className="clip">Description</dt>
-                <dd className="ml0 gray truncate w-100">{val.description}</dd>
+                <dt className="clip">Name</dt>
+                <dd className="ml0 black truncate w-100">{val.name}</dd>
+                <dt className="clip">Email</dt>
+                <dd className="ml0 gray truncate w-100">{val.email}</dd>
               </dl>
             </a>
           </div>

@@ -8,11 +8,13 @@ interface SideNavOptionsType {
 
 const sideNavArray: SideNavOptionsType[] = [
   { title: "Dashboard", icon: "home", link: "/dashboard" },
-  { title: "Classes", icon: "class", link: "/dashboard" },
-  { title: "Instructors", icon: "assignment_ind", link: "/dashboard" },
-  { title: "Guests", icon: "person_outline", link: "/dashboard" },
-  { title: "Locations", icon: "place", link: "/dashboard" },
-  { title: "Reporting", icon: "visibility", link: "/dashboard" },
+  { title: "Clients", icon: "class", link: "/dashboard/clients" },
+  {
+    title: "Add New User",
+    icon: "assignment_ind",
+    link: "/dashboard/addnewuser",
+  },
+  { title: "Logout", icon: "person_outline", link: "/dashboard" },
 ];
 
 export default function SideNav() {
