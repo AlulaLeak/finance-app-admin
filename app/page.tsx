@@ -1,7 +1,7 @@
 "use client";
 import { userAccessToken } from "../utils/fetchUserDetails";
 import { useEffect } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const router = useRouter();
@@ -10,11 +10,14 @@ export default function Home() {
     const accessToken = userAccessToken();
     if (!accessToken) {
       router.push("/login");
+    } else {
+      router.push("/dashboard");
     }
   }, []);
+
   return (
     <>
-      <div className="db center mw5 tc black link dim">hello, next!</div>;
+      <div className="db center pv7 mw5 tc black link dim">hello!</div>
     </>
   );
 }

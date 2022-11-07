@@ -1,17 +1,19 @@
 "use client";
 import Image from "next/image";
-import { useEffect } from "react";
-import { useClientList } from "../../../hooks/useClientList";
+import { useEffect, useContext } from "react";
+import { PageContext } from "../../../provider/PageContextProvider";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { getFirestore, collection } from "firebase/firestore";
 import { firebaseApp } from "../../../firebase/initfirebase";
+import { useRouter } from "next/navigation";
+import { DocumentData } from "firebase/firestore";
 
 const sortBy: string[] = ["Name", "Email"];
 
 export default function ClientList() {
   const [value, loading, error] = useCollection(collection(getFirestore(firebaseApp), "users"));
-
-  const { initializeClientList, sortList, list, noPersonsFound } = useClientList();
+  const { initializeClientList, sortList, list, noPersonsFound, getSpecificUser } = useContext(PageContext);
+  const router = useRouter();
 
   useEffect(() => {
     initializeClientList(value);
@@ -20,7 +22,7 @@ export default function ClientList() {
   function renderList() {
     if (list[0] === undefined) return <div>Loading...</div>;
     if (noPersonsFound) return <div>No persons found</div>;
-    return list?.map((val, idx) => {
+    return list?.map((val: DocumentData, idx: number) => {
       if (idx < 15)
         return (
           <article key={idx} className="dt w-100 bb b--black-05 pb2 mt2">
@@ -38,11 +40,14 @@ export default function ClientList() {
               <h2 className="f6 fw4 mt0 mb0 black-60">{val.email}</h2>
             </div>
             <div className="dtc v-mid">
-              <form className="w-100 tr">
-                <button className="f6 button-reset bg-white ba b--black-10 dim pointer pv1 black-60" type="submit">
+              <div className="w-100 tr">
+                <button
+                  onClick={() => router.push(`/dashboard/clients/${val.uid}`)}
+                  className="f6 button-reset bg-white ba b--black-10 dim pointer pv1 black-60"
+                >
                   View Profile
                 </button>
-              </form>
+              </div>
             </div>
           </article>
         );
@@ -56,7 +61,7 @@ export default function ClientList() {
           return (
             <div key={idx} className="fl w-100 w-50-ns tc">
               <form className="pa4 black-80">
-                <div className="measure">
+                <div className="center measure">
                   <label className="f6 b db mb2">{optionToSortBy}</label>
                   <input
                     onChange={(e) => sortList(e, optionToSortBy)}
