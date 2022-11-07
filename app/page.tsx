@@ -12,5 +12,9 @@ export default function Home() {
       router.push("/login");
     }
   }, []);
-  return <div>hello, next!</div>;
+  return (
+    <>
+      <div className="db center mw5 tc black link dim">hello, next!</div>;
+    </>
+  );
 }

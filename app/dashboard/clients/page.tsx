@@ -9,12 +9,9 @@ import { firebaseApp } from "../../../firebase/initfirebase";
 const sortBy: string[] = ["Name", "Email"];
 
 export default function ClientList() {
-  const [value, loading, error] = useCollection(
-    collection(getFirestore(firebaseApp), "users")
-  );
+  const [value, loading, error] = useCollection(collection(getFirestore(firebaseApp), "users"));
 
-  const { initializeClientList, sortList, list, noPersonsFound } =
-    useClientList();
+  const { initializeClientList, sortList, list, noPersonsFound } = useClientList();
 
   useEffect(() => {
     initializeClientList(value);
@@ -26,45 +23,41 @@ export default function ClientList() {
     return list?.map((val, idx) => {
       if (idx < 15)
         return (
-          <div key={idx} className="fl w-50 w-25-m w-20-l pa2">
-            <a
-              href="https://geo.itunes.apple.com/us/album/blonde/id1146195596?at=1l3vqFJ&mt=1&app=music"
-              className="db link dim tc"
-            >
+          <article key={idx} className="dt w-100 bb b--black-05 pb2 mt2">
+            <div className="dtc w2 w3-ns v-mid">
               <Image
-                width={1000}
-                height={200}
+                width={100}
+                height={100}
+                alt={`${val.name} with email ${val.email}`}
                 src={val.photoUrl}
-                alt="Frank Ocean Blonde Album Cover"
-                className={`w-100 db outline black-100`}
+                className="ba b--black-10 db br-100 w2 w3-ns h2 h3-ns"
               />
-              <dl className="mt2 f6 lh-copy">
-                <dt className="clip">Name</dt>
-                <dd className="ml0 black truncate w-100">{val.name}</dd>
-                <dt className="clip">Email</dt>
-                <dd className="ml0 gray truncate w-100">{val.email}</dd>
-              </dl>
-            </a>
-          </div>
+            </div>
+            <div className="dtc v-mid pl3">
+              <h1 className="f6 f5-ns fw6 lh-title black mv0">{val.name}</h1>
+              <h2 className="f6 fw4 mt0 mb0 black-60">{val.email}</h2>
+            </div>
+            <div className="dtc v-mid">
+              <form className="w-100 tr">
+                <button className="f6 button-reset bg-white ba b--black-10 dim pointer pv1 black-60" type="submit">
+                  View Profile
+                </button>
+              </form>
+            </div>
+          </article>
         );
     });
   }
 
   return (
-    <article>
-      <div className="flex">
-        {/* <div className="w-50 pa3 mr2">
-          <h2 className="f3 fw4 pa3 mv0">Clients</h2>
-        </div> */}
+    <>
+      <article className="cf">
         {sortBy.map((optionToSortBy, idx) => {
           return (
-            <div key={idx} className="w-50 pa3 mr2">
+            <div key={idx} className="fl w-100 w-50-ns tc">
               <form className="pa4 black-80">
                 <div className="measure">
-                  <label className="f6 b db mb2">
-                    {optionToSortBy}
-                    {/* <span className="normal black-60">(optional)</span> */}
-                  </label>
+                  <label className="f6 b db mb2">{optionToSortBy}</label>
                   <input
                     onChange={(e) => sortList(e, optionToSortBy)}
                     name="name"
@@ -72,16 +65,17 @@ export default function ClientList() {
                     type="text"
                     aria-describedby="name-desc"
                   />
-                  <small className="f6 black-60 db mb2">
-                    {`Search for a specific person by ${optionToSortBy.toLowerCase()}.`}
-                  </small>
+                  <small className="f6 black-60 db mb2">{`Search for a specific person by ${optionToSortBy.toLowerCase()}.`}</small>
                 </div>
               </form>
             </div>
           );
         })}
-      </div>
-      <div className="cf pa2">{renderList()}</div>
-    </article>
+      </article>
+      <div className="mw8 center">{renderList()}</div>
+    </>
   );
 }
+
+// TODO: Change navbar and make search collapse
+// TODO: Create Specifc page

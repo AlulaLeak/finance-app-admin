@@ -1,14 +1,32 @@
+import Link from "next/link";
+
+interface TopNavOptionsType {
+  title: string;
+  link: string;
+}
+
+const topNavArray: TopNavOptionsType[] = [
+  { title: "Dashboard", link: "/dashboard" },
+  { title: "Clients", link: "/dashboard/clients" },
+  { title: "Add New User", link: "/dashboard/addnewuser" },
+  { title: "Logout", link: "/dashboard" },
+];
+
 export default function TopNav() {
   return (
-    <div className="db w-100 bg-white-80 shadow-sm mv-2">
-      <h3 className="f4 tr ma0 pa2 black-60">
-        <img
-          src="http://www.fillmurray.com/25/25"
-          className="br-100 dib mr2 v-mid"
-          alt=""
-        />
-        Admin
-      </h3>
-    </div>
+    <nav className="db dt-l w-100 border-box pa3 ph5-l">
+      <Link className="db dtc-l v-mid mid-gray link dim w-100 w-25-l tc tl-l mb2 mb0-l" href="/" title="Home">
+        <img src="http://tachyons.io/img/logo.jpg" className="dib w2 h2 br-100" alt="" />
+      </Link>
+      <div className="db dtc-l v-mid w-100 w-75-l tc tr-l">
+        {topNavArray.map((topNavOptions, idx) => {
+          return (
+            <Link className="link dim dark-gray f6 f5-l dib mr3 mr4-l" href={topNavOptions.link} title={topNavOptions.title}>
+              {topNavOptions.title}
+            </Link>
+          );
+        })}
+      </div>
+    </nav>
   );
 }
