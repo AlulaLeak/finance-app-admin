@@ -7,8 +7,10 @@ import { firebaseApp } from "../../../../firebase/initfirebase";
 import ClientApplicationFiles from "../../../../components/ClientApplicationFiles";
 import ClientApplicationInfo from "../../../../components/ClientApplicationInfo";
 import Image from "next/image";
+// import { onClick } from "../../../../utils/confirmationBox";
 
 interface applicationPersonalInfoType {
+  document: string;
   question: string;
   answer: string;
 }
@@ -22,10 +24,10 @@ export default function ClientPage({ params }: { params: { id: string } }) {
   const [docData, docDataLoading, docDataError] = useDocumentData(docRef);
 
   const applicationPersonalInfo: applicationPersonalInfoType[] = [
-    { question: "Application Name", answer: docData?.application_name },
-    { question: "Email", answer: docData?.email },
-    { question: "Date of Birth", answer: docData?.date_of_birth },
-    { question: "Pronouns", answer: docData?.pronouns },
+    { document: "application_name", question: "Application Name", answer: docData?.application_name },
+    { document: "email", question: "Email", answer: docData?.email },
+    { document: "date_of_birth", question: "Date of Birth", answer: docData?.date_of_birth },
+    { document: "pronouns", question: "Pronouns", answer: docData?.pronouns },
   ];
   const applicationFileInfo: applicationFileNameType[] = [
     { document: "doc_1", fileName: docData?.doc_1 },

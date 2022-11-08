@@ -1,5 +1,6 @@
-import { getStorage, ref as storageRef } from "firebase/storage";
-import { firebaseApp } from "../firebase/initfirebase";
+import { ref as storageRef } from "firebase/storage";
+import { doc, collection, updateDoc } from "firebase/firestore";
+import { storage, db } from "../firebase/initfirebase";
 import { useDownloadURL, useUploadFile } from "react-firebase-hooks/storage";
 import Link from "next/link";
 import { useState } from "react";
@@ -18,8 +19,8 @@ export default function ClientApplicationFiles({
   fileInfo: applicationFileNameType;
 }) {
   const [selectedFile, setSelectedFile] = useState<File>();
-  const storage = getStorage(firebaseApp);
-  const ref = storageRef(storage, `${params.id}/${fileInfo.document}/${selectedFile?.name}`);
+  const storeRef = storageRef(storage, `${params.id}/${fileInfo.document}/${selectedFile?.name}`);
+  const userDocRef = doc(db, "users", params.id);
   const [downloadableFile, downloadableFileLoading, downloadableFileError] = useDownloadURL(
     storageRef(storage, `${params.id}/${fileInfo.document}/${fileInfo.fileName}`)
   );
@@ -27,8 +28,11 @@ export default function ClientApplicationFiles({
 
   const upload = async () => {
     if (selectedFile) {
-      const result = await uploadFile(ref, selectedFile);
+      const result = await uploadFile(storeRef, selectedFile);
       alert(`Result: ${JSON.stringify(result)}`);
+      await updateDoc(userDocRef, {
+        [fileInfo.document]: selectedFile.name,
+      });
     }
   };
 
