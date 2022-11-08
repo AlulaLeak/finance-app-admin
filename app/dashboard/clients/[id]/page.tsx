@@ -4,7 +4,6 @@ import { useEffect, useContext } from "react";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import { doc, getFirestore } from "firebase/firestore";
 import { firebaseApp } from "../../../../firebase/initfirebase";
-import { getStorage, ref as storageRef } from "firebase/storage";
 import ClientApplicationFiles from "../../../../components/ClientApplicationFiles";
 import ClientApplicationInfo from "../../../../components/ClientApplicationInfo";
 import Image from "next/image";
@@ -64,6 +63,4 @@ export default function ClientPage({ params }: { params: { id: string } }) {
     </div>
   );
 }
-
-// Todo: display user info
 // incorporate storage

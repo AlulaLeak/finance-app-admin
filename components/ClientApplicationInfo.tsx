@@ -18,7 +18,7 @@ export default function ClientApplicationInfo({
       <p>{personalInfo.answer}</p>
       <div className="w-100 tr">
         <button
-          // onClick={() => router.push(`/dashboard/clients/${val.uid}`)}
+          // onClick={() => openFileSelector()}
           className="f6 button-reset bg-white ba b--black-10 dim pointer pv1 black-60"
         >
           Edit
