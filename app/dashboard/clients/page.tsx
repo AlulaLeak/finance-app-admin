@@ -45,7 +45,7 @@ export default function ClientList() {
                   onClick={() => router.push(`/dashboard/clients/${val.uid}`)}
                   className="f6 button-reset bg-white ba b--black-10 dim pointer pv1 black-60"
                 >
-                  View Profile
+                  View Application
                 </button>
               </div>
             </div>

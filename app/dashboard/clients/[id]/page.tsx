@@ -7,6 +7,7 @@ import { firebaseApp } from "../../../../firebase/initfirebase";
 import { getStorage, ref as storageRef } from "firebase/storage";
 import ClientApplicationFiles from "../../../../components/ClientApplicationFiles";
 import ClientApplicationInfo from "../../../../components/ClientApplicationInfo";
+import Image from "next/image";
 
 interface applicationPersonalInfoType {
   question: string;
@@ -22,7 +23,8 @@ export default function ClientPage({ params }: { params: { id: string } }) {
   const [docData, docDataLoading, docDataError] = useDocumentData(docRef);
 
   const applicationPersonalInfo: applicationPersonalInfoType[] = [
-    { question: "Name to Apply As", answer: docData?.application_name },
+    { question: "Application Name", answer: docData?.application_name },
+    { question: "Email", answer: docData?.email },
     { question: "Date of Birth", answer: docData?.date_of_birth },
     { question: "Pronouns", answer: docData?.pronouns },
   ];
@@ -38,14 +40,28 @@ export default function ClientPage({ params }: { params: { id: string } }) {
 
   if (docData === undefined || docData === undefined) return <div>Loading...</div>;
   return (
-    <>
-      {applicationPersonalInfo.map((personalInfo, idx) => {
-        return <ClientApplicationInfo key={idx} params={params} personalInfo={personalInfo} />;
-      })}
-      {applicationFileInfo.map((fileInfo, idx) => {
-        return <ClientApplicationFiles key={idx} params={params} fileInfo={fileInfo} />;
-      })}
-    </>
+    <div className="mw8 center pa2">
+      <div className="flex justify-between">
+        <h1 className="underline f2 bold mw9 fl">{docData?.name}</h1>
+        <div className="dtc pv3  w3-ns v-mid fl">
+          <Image
+            width={100}
+            height={100}
+            alt={`${docData.name} with email ${docData.email}`}
+            src={docData.photoUrl}
+            className="ba b--black-10 db br-100 w3 h3"
+          />
+        </div>
+      </div>
+      <ul className="list mw8 pl0 mt0 ">
+        {applicationPersonalInfo.map((personalInfo, idx) => {
+          return <ClientApplicationInfo key={idx} params={params} personalInfo={personalInfo} />;
+        })}
+        {applicationFileInfo.map((fileInfo, idx) => {
+          return <ClientApplicationFiles key={idx} params={params} fileInfo={fileInfo} />;
+        })}
+      </ul>
+    </div>
   );
 }
 

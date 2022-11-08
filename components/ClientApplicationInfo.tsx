@@ -13,9 +13,17 @@ export default function ClientApplicationInfo({
   personalInfo: applicationPersonalInfoType;
 }) {
   return (
-    <>
-      <h3>{personalInfo.question} ?</h3>
+    <li className="ph3 pv3 bb b--light-silver">
+      <h2>{personalInfo.question}: </h2>
       <p>{personalInfo.answer}</p>
-    </>
+      <div className="w-100 tr">
+        <button
+          // onClick={() => router.push(`/dashboard/clients/${val.uid}`)}
+          className="f6 button-reset bg-white ba b--black-10 dim pointer pv1 black-60"
+        >
+          Edit
+        </button>
+      </div>
+    </li>
   );
 }
