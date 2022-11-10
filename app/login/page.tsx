@@ -16,9 +16,7 @@ export default function Login() {
       if (user.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
         await signOut(auth);
         localStorage.clear();
-        throw new Error(
-          "Whoops! This user does not have administration access!"
-        );
+        throw new Error("Whoops! This user does not have administration access!");
       } else {
         const { refreshToken, providerData } = user;
         localStorage.setItem("user", JSON.stringify(providerData));
@@ -49,11 +47,7 @@ export default function Login() {
       ) : (
         <>
           <h2>Not signed in</h2>
-          <button
-            onClick={() => signIn().then(() => router.push("/dashboard"))}
-          >
-            Sign in with Google
-          </button>
+          <button onClick={() => signIn().then(() => router.push("/dashboard"))}>Sign in with Google</button>
         </>
       )}
     </div>

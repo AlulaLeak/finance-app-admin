@@ -1,5 +1,5 @@
 import { ref as storageRef } from "firebase/storage";
-import { doc, collection, updateDoc } from "firebase/firestore";
+import { doc, increment, updateDoc, FieldValue } from "firebase/firestore";
 import { storage, db } from "../firebase/initfirebase";
 import { useDownloadURL, useUploadFile } from "react-firebase-hooks/storage";
 import Link from "next/link";
@@ -21,7 +21,7 @@ export default function ClientApplicationFiles({
   const [selectedFile, setSelectedFile] = useState<File>();
   const storeRef = storageRef(storage, `${params.id}/${fileInfo.document}/${selectedFile?.name}`);
   const userDocRef = doc(db, "users", params.id);
-  const [downloadableFile, downloadableFileLoading, downloadableFileError] = useDownloadURL(
+  const [downloadableFile, downloadableFileLoading] = useDownloadURL(
     storageRef(storage, `${params.id}/${fileInfo.document}/${fileInfo.fileName}`)
   );
   const [uploadFile, uploading, snapshot, error] = useUploadFile();
@@ -33,6 +33,11 @@ export default function ClientApplicationFiles({
       await updateDoc(userDocRef, {
         [fileInfo.document]: selectedFile.name,
       });
+      if (!fileInfo.document) {
+        await updateDoc(userDocRef, {
+          step: increment(1),
+        });
+      }
     }
   };
 
@@ -58,7 +63,6 @@ export default function ClientApplicationFiles({
         {error && <strong>Error: {error.message}</strong>}
         {uploading && <span>Uploading file...</span>}
         {snapshot && <span>Snapshot: {JSON.stringify(snapshot.state)}</span>}
-        {/* {selectedFile && <span>Selected file: {selectedFile.name}</span>} */}
       </li>
     </>
   );

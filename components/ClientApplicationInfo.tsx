@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc, increment } from "firebase/firestore";
 import { db } from "../firebase/initfirebase";
 
 interface applicationPersonalInfoType {
@@ -18,14 +18,21 @@ export default function ClientApplicationInfo({
   const userDocRef = doc(db, "users", params.id);
 
   const [newValueToInput, setNewValueToInput] = useState<string>();
+
   const uploadNewName = async () => {
     if (newValueToInput) {
       await updateDoc(userDocRef, {
         [personalInfo.document]: newValueToInput,
       });
+      if (!personalInfo.answer) {
+        await updateDoc(userDocRef, {
+          step: increment(1),
+        });
+      }
       setNewValueToInput(undefined);
     }
   };
+
   return (
     <li className="ph3 pv3 bb b--light-silver">
       <h2>{personalInfo.question}: </h2>
@@ -42,7 +49,7 @@ export default function ClientApplicationInfo({
           setNewValueToInput(e.currentTarget.value);
         }}
         value={newValueToInput !== undefined ? newValueToInput : `Enter a New ${personalInfo.question} Here`}
-        // onKeyPress={(e) => e.key === "Enter" && }
+        onKeyPress={(e) => e.key === "Enter" && uploadNewName()}
         onFocus={(e) => setNewValueToInput("")}
       />
     </li>

@@ -1,13 +1,12 @@
 //
 "use client";
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import { doc, getFirestore } from "firebase/firestore";
 import { firebaseApp } from "../../../../firebase/initfirebase";
 import ClientApplicationFiles from "../../../../components/ClientApplicationFiles";
 import ClientApplicationInfo from "../../../../components/ClientApplicationInfo";
 import Image from "next/image";
-// import { onClick } from "../../../../utils/confirmationBox";
 
 interface applicationPersonalInfoType {
   document: string;
@@ -65,4 +64,3 @@ export default function ClientPage({ params }: { params: { id: string } }) {
     </div>
   );
 }
-// incorporate storage
