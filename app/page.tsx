@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="db center pv7 mw5 tc black link dim">hello!</div>
+      <div className="db center pv7 mw5 tc black link dim">...Loading</div>
     </>
   );
 }

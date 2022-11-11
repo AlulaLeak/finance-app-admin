@@ -4,10 +4,12 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/navigation";
 import { auth } from "../../firebase/initfirebase";
 import { useEffect } from "react";
+import { localUser, userAccessToken } from "../../utils/fetchUserDetails";
 
 export default function Login() {
   const provider = new GoogleAuthProvider();
   const router = useRouter();
+  const accessToken = userAccessToken();
   const [userInfo, loading, error] = useAuthState(auth);
 
   const signIn = async () => {
@@ -39,9 +41,9 @@ export default function Login() {
 
   return (
     <div>
-      {userInfo ? (
+      {accessToken ? (
         <>
-          <h2>hi, {userInfo.displayName}</h2>
+          <h2>Hi, {localUser()?.displayName}!</h2>
           <button onClick={() => logOut()}>Logout</button>
         </>
       ) : (
