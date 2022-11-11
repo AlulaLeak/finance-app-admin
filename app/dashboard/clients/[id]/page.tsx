@@ -34,9 +34,7 @@ export default function ClientPage({ params }: { params: { id: string } }) {
     { document: "doc_3", fileName: docData?.doc_3 },
   ];
 
-  useEffect(() => {
-    // console.log("docData:", docData);
-  }, [docData !== undefined]);
+  useEffect(() => {}, [docData !== undefined]);
 
   if (docData === undefined || docData === undefined) return <div>Loading...</div>;
   return (
@@ -44,13 +42,22 @@ export default function ClientPage({ params }: { params: { id: string } }) {
       <div className="flex justify-between">
         <h1 className="underline f2 bold mw9 fl">{docData?.name}</h1>
         <div className="dtc pv3  w3-ns v-mid fl">
-          <Image
-            width={100}
-            height={100}
-            alt={`${docData.name} with email ${docData.email}`}
-            src={docData.photoUrl}
-            className="ba b--black-10 db br-100 w3 h3"
-          />
+          {docData.photoUrl[8] === "l" && (
+            <Image
+              width={100}
+              height={100}
+              alt={`${docData.name} with email ${docData.email}`}
+              src={docData.photoUrl}
+              className="ba b--black-10 db br-100 w3 h3"
+            />
+          )}
+          {docData.photoUrl[8] !== "l" && (
+            <img
+              alt={`${docData.name} with email ${docData.email}`}
+              src="/img/avatar.png"
+              className="ba b--black-10 db br-100 w3 h3"
+            />
+          )}
         </div>
       </div>
       <ul className="list mw8 pl0 mt0 ">

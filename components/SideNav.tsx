@@ -9,11 +9,6 @@ interface SideNavOptionsType {
 const sideNavArray: SideNavOptionsType[] = [
   { title: "Dashboard", icon: "home", link: "/dashboard" },
   { title: "Clients", icon: "class", link: "/dashboard/clients" },
-  {
-    title: "Add New User",
-    icon: "assignment_ind",
-    link: "/dashboard/addnewuser",
-  },
   { title: "Logout", icon: "person_outline", link: "/dashboard" },
 ];
 
@@ -27,12 +22,8 @@ export default function SideNav() {
         {sideNavArray.map((val: SideNavOptionsType, idx: number) => {
           return (
             <li key={idx} className="tc-m hover-bg-blue pa3 pointer">
-              {/* <i className="material-icons v-mid">{val.icon}</i> */}
               <>(Icon)</>
-              <Link
-                className="link pa2 pointer black dn-m v-mid"
-                href={val.link}
-              >
+              <Link className="link pa2 pointer black dn-m v-mid" href={val.link}>
                 {val.title}
               </Link>
             </li>

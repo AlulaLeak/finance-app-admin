@@ -27,13 +27,22 @@ export default function ClientList() {
         return (
           <article key={idx} className="dt w-100 bb b--black-05 pb2 mt2">
             <div className="dtc w2 w3-ns v-mid">
-              <Image
-                width={100}
-                height={100}
-                alt={`${val.name} with email ${val.email}`}
-                src={val.photoUrl}
-                className="ba b--black-10 db br-100 w2 w3-ns h2 h3-ns"
-              />
+              {val.photoUrl[8] === "l" && (
+                <Image
+                  width={100}
+                  height={100}
+                  alt={`${val.name} with email ${val.email}`}
+                  src={val.photoUrl}
+                  className="ba b--black-10 db br-100 w3 h3"
+                />
+              )}
+              {val.photoUrl[8] !== "l" && (
+                <img
+                  alt={`${val.name} with email ${val.email}`}
+                  src="/img/avatar.png"
+                  className="ba b--black-10 db br-100 w3 h3"
+                />
+              )}
             </div>
             <div className="dtc v-mid pl3">
               <h1 className="f6 f5-ns fw6 lh-title black mv0">{val.name}</h1>

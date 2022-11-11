@@ -5,7 +5,7 @@ const nextConfig = {
   experimental: { appDir: true },
   webpack: true,
   images: {
-    domains: ["lh3.googleusercontent.com"],
+    domains: ["lh3.googleusercontent.com", "via.placeholder.com", "cdn.sstatic.net"],
   },
 };
 

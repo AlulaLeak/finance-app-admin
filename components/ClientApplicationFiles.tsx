@@ -3,7 +3,7 @@ import { doc, increment, updateDoc, FieldValue } from "firebase/firestore";
 import { storage, db } from "../firebase/initfirebase";
 import { useDownloadURL, useUploadFile } from "react-firebase-hooks/storage";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
 interface applicationFileNameType {
@@ -40,6 +40,7 @@ export default function ClientApplicationFiles({
       }
     }
   };
+  useEffect(() => {}, [snapshot?.metadata]);
 
   if (downloadableFileLoading) return <div>Loading...</div>;
   return (

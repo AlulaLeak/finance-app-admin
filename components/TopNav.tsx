@@ -10,7 +10,6 @@ interface TopNavOptionsType {
 const topNavArray: TopNavOptionsType[] = [
   { title: "Dashboard", link: "/dashboard" },
   { title: "Clients", link: "/dashboard/clients" },
-  { title: "Add New User", link: "/dashboard/addnewuser" },
   { title: "Logout", link: "/dashboard" },
 ];
 
@@ -23,7 +22,12 @@ export default function TopNav() {
       <div className="db dtc-l v-mid w-100 w-75-l tc tr-l">
         {topNavArray.map((topNavOptions, idx) => {
           return (
-            <Link key={idx} className="link dim dark-gray f6 f5-l dib mr3 mr4-l" href={topNavOptions.link} title={topNavOptions.title}>
+            <Link
+              key={idx}
+              className="link dim dark-gray f6 f5-l dib mr3 mr4-l"
+              href={topNavOptions.link}
+              title={topNavOptions.title}
+            >
               {topNavOptions.title}
             </Link>
           );
