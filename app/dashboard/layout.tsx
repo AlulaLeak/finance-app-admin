@@ -9,14 +9,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   if (accessToken) {
     return (
-      <html>
-        <body>
-          <>
-            <TopNav />
-            {children}
-          </>
-        </body>
-      </html>
+      <>
+        <TopNav />
+        {children}
+      </>
     );
   } else {
     router.push("/login");

@@ -29,7 +29,7 @@ export default function Login() {
     }
   };
   const logOut = async () => {
-    await signOut(auth);
+    signOut(auth);
     localStorage.clear();
   };
 

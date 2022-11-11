@@ -40,7 +40,7 @@ export default function ClientPage({ params }: { params: { id: string } }) {
   return (
     <div className="mw8 center pa2">
       <div className="flex justify-between">
-        <h1 className="underline f2 bold mw9 fl">{docData?.name}</h1>
+        <h1 className="underline f2-l f3-m f4 bold mw9 ">{docData?.name}</h1>
         <div className="dtc pv3  w3-ns v-mid fl">
           {docData.photoUrl[8] === "l" && (
             <Image
